@@ -10,6 +10,8 @@ RUN curl --create-dirs -sSLo /usr/share/jenkins/swarm-client-$JENKINS_SWARM_VERS
 
 COPY jenkins-slave.sh /usr/local/bin/jenkins-slave.sh
 
+ENV DOCKER_VERSION 1.4.1
+
 # make sure HTTPS transport is available to APT
 RUN apt-get update
 RUN apt-get install -y apt-transport-https
@@ -22,7 +24,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D78692
 
 # Install docker
 RUN apt-get update
-RUN apt-get install -y lxc-docker
+RUN apt-get install -y lxc-docker-$DOCKER_VERSION
 
 VOLUME /home/jenkins-slave
 VOLUME /var/run/docker.sock
