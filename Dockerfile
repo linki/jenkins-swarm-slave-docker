@@ -13,5 +13,6 @@ COPY jenkins-slave.sh /usr/local/bin/jenkins-slave.sh
 RUN curl -sSL https://get.docker.com/ubuntu/ | sh
 
 VOLUME /home/jenkins-slave
+VOLUME /var/run/docker.sock
 
 ENTRYPOINT ["/usr/local/bin/jenkins-slave.sh"]
